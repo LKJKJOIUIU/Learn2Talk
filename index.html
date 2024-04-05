@@ -128,7 +128,8 @@
 
       <div class="content has-text-justified">
         <p>
-          The <b>pipeline</b> of the proposed Learn2Talk framework
+          Fig. 1: The <b>pipeline</b> of the proposed Learn2Talk framework. In training, all modules are used. In inference, only the student
+        model is used, including embedding layer, transformed decoder and speech encoder.
         </p>
       </div>
       </div>
@@ -139,18 +140,20 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Speech-driven facial animation methods usually contain two main classes, 3D and 2D talking face, 
-            both of which attract much research attention in recent years. However, to the best of our knowledge, 
-            the research on 3D talking face does not go deeper as 2D talking face, in the aspect of lip-synchronization (lip-sync). 
+            Speech-driven facial animation methods usually contain two main classes, 3D and 2D talking face, both of which
+            attract considerable research attention in recent years. However,to the best of our knowledge, the research on 3D talking face
+            does not go deeper as 2D talking face, in the aspect of lip synchronization (lip-sync) and speech perception.
           </p>
           <p>
-            To mind the gap between the two sub-fields, we propose a learning framework named Learn2Talk, 
-            which can construct a better 3D talking face network by exploiting two expertise points from the field of 2D talking face. 
-            Firstly, a teacher model selected from 2D talking face methods is used to guide the training of the audio-to-3D motions regression network to yield more 3D vertex accuracy. 
-            Secondly, inspired by the audio-video sync network, a 3D sync-lip expert model is devised for the pursuit of lip-sync between audio and 3D facial motions. 
+            To mind the gap between the two sub-fields, we propose a learning framework named Learn2Talk, which can construct a better 3D talking face
+            network by exploiting two expertise points from the field of 2D talking face. Firstly, inspired by the audio-video sync network,
+            a 3D sync-lip expert model is devised for the pursuit of lip-sync between audio and 3D facial motion. Secondly, a teacher
+            model selected from 2D talking face methods is used to guide the training of the audio-to-3D motions regression network to
+            yield more 3D vertex accuracy.
           </p>
           <p>
-            Extensive experiments show the advantage of the proposed framework in terms of 3D lip-sync and 3D vertex accuracy, compared with state-of-the-arts.
+             Extensive experiments show the advantages of the proposed framework in terms of lip-sync, vertex accuracy and speech perception, compared with state-of-the-arts.
+             Finally, we show two applications of the proposed framework: audio-visual speech recognition and speech-driven 3D Gaussian Splatting based avatar animation.
           </p>
         </div>
       </div>
@@ -182,6 +185,69 @@
           </p>
           <img src="./static/images/Qualitative Evaluation.jpg"
            class="interpolation-image"/>
+          <p>
+            Fig. 2: Visual comparisons of sampled facial motions animated by different methods on VOCA-Test (left) and BIWI-Test-A (right).
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            Fig. 3 shows the 3D reconstruction error heatmaps of the sampled frames, produced by the three methods. The per-vertex errors are color-coded on the reconstructed mesh for
+            visualization. It could be observed that, our method obtains more accurate vertices both in mouth region and upper-face region.
+          </p>
+          <img src="./static/images/heatmaps.jpg"
+           class="interpolation-image"/>
+          <p>
+            Fig. 3: 3D reconstruction error heatmaps of sampled facial motions predicted by different methods on VOCA-Test (left) and BIWI-Test-A (right).
+          </p>
+        </div>
+
+        <div class="content has-text-justified">
+          <p>
+            Fig. 4 shows the visual comparisons on other languages, including Chinese, Japanese and Korean. Although trained on English datasets, our method can generalize well to any
+            other language. This is because that our method uses the signal characteristics of the speech audio, instead of words or linguistics. From Fig. 4, it could be observed that our
+            method generates more expressive animation, with obvious movements in opening mouth, pouting and closing mouth. The comparisons on facial animations with all frames are available
+            in the supplementary material.
+          </p>
+          <img src="./static/images/different language.jpg"
+           class="interpolation-image"/>
+          <p>
+            Fig. 4: Visual comparisons of sampled facial motions predicted by different methods across languages, including Chinese, Japanese and Korean.
+          </p>
+        </div>
+
+
+      </div>
+    </div>
+
+
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Applications</h2>
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Audio-visual speech recognition</b>. The first application is to synthesize the audio-visual data for the task of the audio-visual speech recognition. We use Learn2Talk to synthesize
+            the video clips from the audios on the subset of LRS3, and then construct the labeled audio-visual corpora which can be used to train and test the audio-visual speech recognition
+            network. Such synthesized audio-visual data is valuable in labeled data augmentation and personal privacy protection.
+          </p>
+        </div>
+
+
+        <div class="content has-text-justified">
+          <p>
+            <b>Speech-driven 3DGS-based avatar animation</b>. The recent 3DGS method achieves high rendering quality for novel-view synthesis with real-time performance. 
+            Instead of training the neutral network in 3D space such as NeRF, it optimizes the discrete geometric primitives, namely 3D Gaussians. 3DGS has already been 
+            used to reconstruct the head avatar, and the human body avatar from multiple view images. The second application of our method is that, it enables the speech-driven 
+            3DGS-based head avatar. Our speech-driven 3DGS animation is well in-sync with the driving audio, and supports multiple view synthesis in each frame. 
+          </p>
+          <img src="./static/images/3DGS.jpg"
+           class="interpolation-image"/>
+          <p>
+            Fig. 5: Visualization of the sampled motions of the speech-driven 3DGS-based head avatar. In each frame, we show the FLAME
+            model generated by our method (1st row-left), and the front view (1st row-right), two side views (2nd row) of the driven avatar.
+          </p>
         </div>
 
 
